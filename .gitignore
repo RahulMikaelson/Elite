@@ -1,1 +1,4 @@
 .idea
+.env
+Init
+docker-compose.yaml
