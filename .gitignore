@@ -1,4 +1,5 @@
 .idea
 .env
 Init
+docs
 docker-compose.yaml
