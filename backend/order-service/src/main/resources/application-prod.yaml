@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/Orders
-    username: root
-    password: password
+    url: ${DB_URL:jdbc:postgresql://elite-sql:5432/Orders}
+    username: ${DB_USERNAME:pg_admin}
+    password: ${DB_PASSWORD:secret}
   jpa:
     hibernate:
       ddl-auto: none
@@ -14,4 +14,4 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8181/realms/elite
+          issuer-uri: ${TOKEN_ISSUER_URI:http://localhost:8181}/realms/elite

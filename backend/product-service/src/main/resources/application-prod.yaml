@@ -1,0 +1,11 @@
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb+srv://<username>:<pwd>@<cluster>.mongodb.net/Products}
+      database: ${PRODUCTS_DB:Products}
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${TOKEN_ISSUER_URI:http://localhost:8181}/realms/elite
