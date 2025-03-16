@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.elite</groupId>
-	<artifactId>api-gateway</artifactId>
+	<artifactId>cloud-gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>api-gateway</name>
-	<description>Elite application API Gateway</description>
+	<name>cloud-gateway</name>
+	<description>Elite application Cloud Gateway</description>
 	<url/>
 	<licenses>
 		<license/>
