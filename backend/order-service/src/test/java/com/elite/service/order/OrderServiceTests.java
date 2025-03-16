@@ -1,10 +1,10 @@
-package com.elite.service.product;
+package com.elite.service.order;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ProductServiceApplicationTests {
+class OrderServiceTests {
 
 	@Test
 	void contextLoads() {
