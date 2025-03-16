@@ -7,10 +7,10 @@ User authentication and authorization are managed using **Keycloak** with **PKCE
 
 ## Project Structure
 ```
-E-Commerce-Analytics-Platform/
+Elite/
 │── backend/
 │   ├── service-registry/
-│   ├── api-gateway/
+│   ├── cloud-gateway/
 │   ├── order-service/
 │   ├── product-service/
 │   ├── recommendation-service/
@@ -35,7 +35,7 @@ E-Commerce-Analytics-Platform/
 - Ensures dynamic service registration.
 - Built using **Spring Cloud Eureka**.
 
-### 2. **API Gateway**
+### 2. **Cloud Gateway**
 - Routes API requests to respective microservices.
 - Provides centralized authentication, authorization, and rate limiting.
 - Uses **Keycloak** to verify user authentication.
@@ -111,7 +111,7 @@ docker run -d --name keycloak -p 8181:8080   -e KEYCLOAK_ADMIN=admin   -e KEYCLO
 ```
 
 ##### **Importing Realm Configuration**
-Once Keycloak is running, go to the admin console (`http://localhost:8080/admin`) and:
+Once Keycloak is running, go to the admin console (`http://localhost:8181/admin`) and:
 1. Login with `admin/admin`
 2. Create a new realm
 3. Import `realm-export.json` from the `keycloak/` directory
