@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,13 +27,15 @@ public class OrderController {
     }
 
     @PostMapping("/place-order")
-    public ResponseEntity<OrderResponseDTO> placeOrder(@RequestBody OrderRequestDTO orderRequest) {
-        log.info("Order Controller - Placing order : {}", orderRequest);
+    public ResponseEntity<OrderResponseDTO> placeOrder(@AuthenticationPrincipal Jwt jwt, @RequestBody OrderRequestDTO orderRequest) {
+        orderRequest.setCustomerId(UUID.fromString(jwt.getClaim("sub")));
+        log.info("Order Controller - Placing order : {} for the user with id : {}", orderRequest, jwt.getClaim("sub"));
         return new ResponseEntity<>(orderService.placeOrder(orderRequest),HttpStatus.CREATED);
     }
 
-    @GetMapping("/customer/{customerId}")
-    public ResponseEntity<List<OrderResponseDTO>> getCustomerOrders(@PathVariable UUID customerId) {
+    @GetMapping("/customer")
+    public ResponseEntity<List<OrderResponseDTO>> getCustomerOrders(@AuthenticationPrincipal Jwt jwt) {
+        UUID customerId = UUID.fromString(jwt.getClaim("sub"));
         log.info("Order Controller - Getting customer orders with id : {}", customerId);
         return new ResponseEntity<>(orderService.getCustomerOrders(customerId),HttpStatus.OK);
     }

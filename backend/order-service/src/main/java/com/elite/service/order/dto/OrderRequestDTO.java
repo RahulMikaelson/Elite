@@ -1,5 +1,6 @@
 package com.elite.service.order.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +15,7 @@ import java.util.UUID;
 @Builder
 public class OrderRequestDTO {
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private UUID customerId;
     private List<Item> orderItems;
 }
