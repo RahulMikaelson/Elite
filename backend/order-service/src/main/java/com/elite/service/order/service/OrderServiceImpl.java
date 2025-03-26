@@ -67,6 +67,6 @@ public class OrderServiceImpl implements OrderService {
         Order order = getOrderById(orderId);
         log.info("Order Service - Deleting order with id : {}", orderId);
         orderRepo.delete(order);
-        return new OrderDeleteResponse("Order "+orderId+" has been deleted Successfully,");
+        return new OrderDeleteResponse("Order "+orderId+" has been deleted Successfully.");
     }
 }
