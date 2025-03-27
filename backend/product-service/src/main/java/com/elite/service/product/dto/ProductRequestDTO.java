@@ -13,5 +13,6 @@ public class ProductRequestDTO {
     private String productDescription;
     private String productCategory;
     private Double productPrice;
-    private Integer stock;
+    private String sku;
+    private String brandName;
 }

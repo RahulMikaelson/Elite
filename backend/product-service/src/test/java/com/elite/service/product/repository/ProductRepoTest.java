@@ -24,7 +24,6 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class ProductRepoTest {
     // Mock Products
-    List<Product> productList;
     List<Product> categoryProductList;
     //Mock Page
     Pageable pageable;
@@ -46,18 +45,8 @@ class ProductRepoTest {
 
     @BeforeEach
     void setUp() {
-        productList = List.of(
-                new Product("P001", "Laptop", "High-performance laptop", "Electronics", 75000.0, 10),
-                new Product("P002", "Smartphone", "Latest Android smartphone", "Electronics", 45000.0, 20),
-                new Product("P003", "Headphones", "Wireless noise-canceling headphones", "Accessories", 5000.0, 15),
-                new Product("P004", "Smartwatch", "Fitness tracking smartwatch", "Wearables", 12000.0, 25),
-                new Product("P005", "Bluetooth Speaker", "Portable Bluetooth speaker", "Audio", 3000.0, 30),
-                new Product("P006", "Gaming Mouse", "Ergonomic gaming mouse", "Gaming", 2500.0, 40),
-                new Product("P007", "Mechanical Keyboard", "RGB mechanical keyboard", "Gaming", 7000.0, 10),
-                new Product("P008", "External SSD", "1TB high-speed external SSD", "Storage", 12000.0, 5)
-        );
         categoryProductList = List.of(
-                new Product("P005", "Bluetooth Speaker", "Portable Bluetooth speaker", "Audio", 3000.0, 30)
+                new Product("P005", "Bluetooth Speaker", "Portable Bluetooth speaker", "Audio", 3000.0, "elite", "p-1",Instant.now(),Instant.now())
         );
         pageable = PageRequest.of(0, 10);
         productPage = new PageImpl<>(categoryProductList, pageable, 1);

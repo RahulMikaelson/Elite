@@ -18,6 +18,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,9 +52,9 @@ class ProductServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        product = new Product("75bcb335-f59f-4f27-8a16-39cd95a6fd4e", "product-1", "This is description for product-1", "Test-Category", 15.23, 50);
-        productResponseDTO = new ProductResponseDTO("75bcb335-f59f-4f27-8a16-39cd95a6fd4e", "product-1", "This is description for product-1", "Test-Category", 15.23, 50);
-        productRequestDTO = new ProductRequestDTO("product-1", "This is description for product-1", "Test-Category", 15.23, 50);
+        product = new Product("75bcb335-f59f-4f27-8a16-39cd95a6fd4e", "product-1", "This is description for product-1", "Test-Category", 15.23, "elite", "p-1",Instant.now(),Instant.now());
+        productResponseDTO = new ProductResponseDTO("75bcb335-f59f-4f27-8a16-39cd95a6fd4e", "product-1", "This is description for product-1", "Test-Category", 15.23, "elite", "p-1",Instant.now(),Instant.now());
+        productRequestDTO = new ProductRequestDTO("product-1", "This is description for product-1", "Test-Category", 15.23,"p-1" ,"elite");
     }
 
 
@@ -71,7 +72,8 @@ class ProductServiceImplTest {
         assertEquals(productResponseDTO.getProductDescription(), dto.getProductDescription());
         assertEquals(productResponseDTO.getProductCategory(), dto.getProductCategory());
         assertEquals(productResponseDTO.getProductPrice(), dto.getProductPrice());
-        assertEquals(productResponseDTO.getStock(), dto.getStock());
+        assertEquals(productResponseDTO.getSku(), dto.getSku());
+        assertEquals(productResponseDTO.getBrandName(), dto.getBrandName());
         // Verify
         verify(productRepo,times(1)).findById("75bcb335-f59f-4f27-8a16-39cd95a6fd4e");
         verify(productMapper,times(1)).toProductResponseDTO(product);
@@ -109,7 +111,6 @@ class ProductServiceImplTest {
         assertEquals(productResponseDTO.getProductDescription(), dto.getProductDescription());
         assertEquals(productResponseDTO.getProductCategory(), dto.getProductCategory());
         assertEquals(productResponseDTO.getProductPrice(), dto.getProductPrice());
-        assertEquals(productResponseDTO.getStock(), dto.getStock());
         assertInstanceOf(ProductResponseDTO.class, dto);
         // Verify
         verify(productRepo,times(1)).save(product);

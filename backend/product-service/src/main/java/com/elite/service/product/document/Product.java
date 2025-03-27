@@ -3,9 +3,13 @@ package com.elite.service.product.document;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+
+import java.time.Instant;
 
 @Data
 @AllArgsConstructor
@@ -23,7 +27,15 @@ public class Product {
     private String productCategory;
     @Field(name="price")
     private Double productPrice;
-    @Field(name="stock")
-    private Integer stock;
+    @Field(name="brand")
+    private String brandName;
+    @Field(name="sku")
+    private String sku;
+    @CreatedDate
+    @Field(name="createdAt")
+    private Instant createdAt;
+    @LastModifiedDate
+    @Field(name="updatedAt")
+    private Instant updatedAt;
 
 }
