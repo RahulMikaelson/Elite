@@ -1,7 +1,7 @@
 # Ecommerce Analytics Platform
 
 ## Overview
-This project is a **Microservices-based E-Commerce Analytics Platform** that allows users to manage orders, products, and analytics while providing personalized recommendations. The system follows an event-driven architecture using **Kafka** and is built with **Spring Boot**, **Java**, **PostgreSQL**, **MongoDB**, **Redis**, and **Docker**.
+This project is a **Microservices-based E-Commerce Analytics Platform** that allows users to manage orders, products, inventory, and analytics while providing personalized recommendations. The system follows an event-driven architecture using **Kafka** and is built with **Spring Boot**, **Java**, **PostgreSQL**, **MongoDB**, **Redis**, and **Docker**.
 
 User authentication and authorization are managed using **Keycloak** with **PKCE (Proof Key for Code Exchange)**, eliminating the need for a separate User Management Service.
 
@@ -13,6 +13,7 @@ Elite/
 │   ├── cloud-gateway/
 │   ├── order-service/
 │   ├── product-service/
+│   ├── inventory-service/
 │   ├── recommendation-service/
 │   ├── analytics-service/
 │   ├── event-logging-service/
@@ -47,30 +48,34 @@ Elite/
 - Publishes order events to **Kafka**.
 
 ### 4. **Product Catalog Service**
-- Stores product details and stock availability.
+- Stores product details and general information.
 - Uses **MongoDB** for product catalog management.
-- Syncs product inventory with orders.
 
-### 5. **Recommendation Service**
+### 5. **Inventory Management Service**
+- Manages stock levels and product availability.
+- Uses **PostgreSQL** for inventory tracking.
+- Updates stock based on order processing.
+
+### 6. **Recommendation Service**
 - Provides personalized product recommendations.
 - Uses **Redis** to store frequently accessed recommendations.
 - Consumes user behavior events from **Kafka**.
 
-### 6. **Analytics Service**
+### 7. **Analytics Service**
 - Collects and processes sales and customer data.
 - Uses **MongoDB** to store analytics data.
 - Generates reports and insights.
 
-### 7. **Event Logging Service**
+### 8. **Event Logging Service**
 - Logs system-wide events for debugging and monitoring.
 - Uses **MongoDB** for log storage.
 - Listens to **Kafka** topics for event tracking.
 
-### 8. **Kafka Event Bus**
+### 9. **Kafka Event Bus**
 - Enables asynchronous communication between services.
 - Ensures event-driven processing of data changes.
 
-### 9. **Keycloak Authentication**
+### 10. **Keycloak Authentication**
 - Handles authentication and authorization.
 - Uses PKCE for secure OAuth2 authentication.
 - Protects APIs using JWT tokens issued by Keycloak.
@@ -141,12 +146,12 @@ npm install
 npm start
 ```
 
-
 ## API Documentation
 Each microservice will have a **Swagger UI** for testing APIs:
 - API Gateway: `http://localhost:8080/swagger-ui.html`
-- Order Service: `http://localhost:8082/swagger-ui.html`
-- Product Service: `http://localhost:8083/swagger-ui.html`
+- Order Service: `http://localhost:8081/swagger-ui.html`
+- Product Service: `http://localhost:8082/swagger-ui.html`
+- Inventory Service: `http://localhost:8083/swagger-ui.html`
 
 ## Contribution Guidelines
 1. Fork the repository.
