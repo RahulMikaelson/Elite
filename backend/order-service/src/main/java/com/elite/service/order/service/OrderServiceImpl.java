@@ -21,7 +21,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderMapper orderMapper;
 
     private Order getOrderById(UUID orderId) {
-        log.info("Order Controller - Getting order with id : {}", orderId);
+        log.info("Order Service - Getting order with id : {}", orderId);
         return orderRepo.findById(orderId).orElseThrow(() -> new OrderNotFoundException("Order not found with id : " + orderId, "ORDER_NOT_FOUND"));
     }
 
